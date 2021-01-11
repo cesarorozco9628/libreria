@@ -16,17 +16,17 @@ _ = {// Metodo forEach
         return filteredData;
     }, // Metodo map
     map: (array, fn) => {
-        const newData = [];
+        let newArray = [];
         for(let i = 0; i < array.length; i++) {
-            newData.push(fn(array[i]));
+            newArray.push(fn(array[i]));
         }
-        return newData;
+        return newArray;
     },// Metodo find
     find : (array, fn) =>{
         let value = undefined;
         for(let i=0; i< array.length; i++){
            if(fn(array[i])){
-            value= array[i];
+            value = array[i];
             return value;
            }
         }
@@ -55,17 +55,27 @@ _ = {// Metodo forEach
         console.log('No exist value');
         return false;
     },
-    pluck: (array, propertyName) =>{
+    pluck: (array, fn) => {
         let newArray = [];
         for(let i=0; i<array.lenght; i++){
-            let value = array[i].propertyName;
-            newArray.push(array[i].propertyName);
+            if(array[i].hasOwnProperty(fn)){
+                newArray.push(array[i][fn]);
+            }
         }
-        return newArray;
+        return newArray
+    },
+    without :(array, value) => {
+        for(let i in array){
+            if(array[i] === value){
+                array.splice(i, array[i]);
+            }
+        }
+        return  array;
     }
 }
+let num = [2,6,3,8,9,3,6,2,9,8];
+console.log(_.without(num, 2));
 
-const nombres = [ {name: 'cesar',age: 25}, {name: 'jorge', age: 29}, {name: 'sandra', age: 32}];
 
-// const double = _.map(numbers, (number) => number*10);
-console.log(_.map(numbers, (number) => number*2));
+
+
