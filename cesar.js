@@ -56,13 +56,13 @@ _ = {// Metodo forEach
         return false;
     },
     pluck: (array, fn) => {
-        let newArray = [];
-        for(let i=0; i<array.lenght; i++){
+        let ces = [];
+        for(let i in array){
             if(array[i].hasOwnProperty(fn)){
-                newArray.push(array[i][fn]);
+                ces.push(array[i][fn]);
             }
         }
-        return newArray
+        return ces
     },
     without :(array, value) => {
         for(let i in array){
@@ -73,8 +73,8 @@ _ = {// Metodo forEach
         return  array;
     }
 }
-let num = [2,6,3,8,9,3,6,2,9,8];
-console.log(_.without(num, 2));
+let users = [{name: 'cesar', age: 25}, {name: 'sandra', age: 31}, {name: 'jorge', age: 29}];
+console.log(_.pluck(users, 'name'));
 
 
 
